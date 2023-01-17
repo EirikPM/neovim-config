@@ -75,5 +75,9 @@ return require('packer').startup(function(use)
       'hrsh7th/cmp-nvim-lsp-signature-help'
   }
 
+  use {
+      'kdheepak/lazygit.nvim'
+  }
+
   use("github/copilot.vim")
 end)
