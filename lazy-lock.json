@@ -1,5 +1,5 @@
 {
-  "LazyVim": { "branch": "main", "commit": "254d0ca26185b1a46695199a50d4e6290f1f27a1" },
+  "LazyVim": { "branch": "main", "commit": "d184825ee3a5b16df002418d7ec7d1850c375df5" },
   "LuaSnip": { "branch": "master", "commit": "5955bdd7b20854aea74dc86c7ddf9989296d52d7" },
   "alpha-nvim": { "branch": "main", "commit": "21a0f2520ad3a7c32c0822f943368dc063a569fb" },
   "catppuccin": { "branch": "main", "commit": "6368edcd0b5e5cb5d9fb7cdee9d62cffe3e14f0e" },
@@ -13,7 +13,7 @@
   "gitsigns.nvim": { "branch": "main", "commit": "7b37bd5c2dd4d7abc86f2af096af79120608eeca" },
   "haskell-vim": { "branch": "master", "commit": "f35d02204b4813d1dbe8b0e98cc39701a4b8e15e" },
   "indent-blankline.nvim": { "branch": "master", "commit": "c4c203c3e8a595bc333abaf168fcb10c13ed5fb7" },
-  "lazy.nvim": { "branch": "main", "commit": "fc3104c44b9a140381daf4bdf8d0454988317a93" },
+  "lazy.nvim": { "branch": "main", "commit": "cab4682d22a0451bc36a648694235621b5dd808e" },
   "leap.nvim": { "branch": "main", "commit": "ff4c3663e5a0a0ecbb3fffbc8318825def35d2aa" },
   "lualine.nvim": { "branch": "master", "commit": "0050b308552e45f7128f399886c86afefc3eb988" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "5b388c0de30f1605671ebfb9a20a620cda50ffce" },
