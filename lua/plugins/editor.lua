@@ -1,5 +1,5 @@
 return {
-  { "neo-tree.nvim", enabled = false },
+  -- { "neo-tree.nvim", enabled = false },
   { "ggandor/flit.nvim", enabled = false },
   {
     "folke/zen-mode.nvim",
