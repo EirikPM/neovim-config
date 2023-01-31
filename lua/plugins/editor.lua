@@ -11,7 +11,7 @@ return {
     end,
     opts = {
       window = {
-        width = 100,
+        width = 0.85,
         options = {
           number = true,
           relativenumber = true,
