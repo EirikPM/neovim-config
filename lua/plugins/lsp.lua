@@ -1,6 +1,6 @@
 return {
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     opts = function()
       local nls = require("null-ls")
       return {
@@ -9,9 +9,8 @@ return {
           nls.builtins.formatting.ktlint,
           nls.builtins.diagnostics.tfsec,
           nls.builtins.formatting.terraform_fmt,
-          nls.builtins.formatting.hclfmt,
           nls.builtins.formatting.yamlfmt,
-          --          nls.builtins.formatting.packer,
+          nls.builtins.formatting.gofumpt,
         },
       }
     end,
@@ -26,5 +25,9 @@ return {
         "shfmt",
       },
     },
+  },
+
+  {
+    "simrat39/rust-tools.nvim",
   },
 }
