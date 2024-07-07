@@ -10,7 +10,8 @@ return {
 		local codelldb_path = extension_path .. "adapter/codelldb"
 		local this_os = vim.uv.os_uname().sysname
 		-- The liblldb extension is .so for Linux and .dylib for MacOS
-		local liblldb_path = extension_path .. "lldb/lib/liblldb" .. (this_os == "Linux" and ".so" or ".dylib")
+		-- TODO: Make this dynamic
+		local liblldb_path = extension_path .. "lldb/lib/liblldb.so" --[[ .. (this_os == "Linux" and ".so" or ".dylib") ]]
 
 		local cfg = require("rustaceanvim.config")
 		vim.g.rustaceanvim = {
