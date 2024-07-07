@@ -14,8 +14,18 @@ return {
 	{
 		"jay-babu/mason-nvim-dap.nvim",
 		cmd = { "DapInstall", "DapUninstall" },
-		opts = {
+		opt = {
 			ensure_installed = { "codelldb" },
 		},
+		--	config = function()
+		--		require("mason-nvim-dap").setup({
+		--			handlers = {
+		--				function(config)
+		--					require("mason-nvim-dap").default_setup(config)
+		--				end,
+		--				codelldb = function(config) end,
+		--			},
+		--		})
+		--	end,
 	},
 }
