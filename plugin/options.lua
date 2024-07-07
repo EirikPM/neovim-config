@@ -22,4 +22,4 @@ opt.wrap = false
 --	opt.grepprg = "rg --vimgrep --no-heading --smart-case"
 --end
 
-opt.termguicolors = true
+opt.termguicolors = false

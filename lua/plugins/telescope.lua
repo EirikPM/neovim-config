@@ -15,6 +15,7 @@ return {
 			{ "<leader>ft", "<cmd>Telescope git_files<cr>", desc = "Find Git files" },
 			{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Find Files" },
 			{ "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
+			{ "<leader>fc", "<cmd>Telescope colorscheme<cr>", desc = "Change Colorscheme" },
 			{
 				"<leader>fp",
 				function()
@@ -23,6 +24,13 @@ return {
 				desc = "Find Plugin File",
 			},
 			{ "<space>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Find Current Buffer" },
+		},
+		opts = {
+			pickers = {
+				colorscheme = {
+					enable_preview = true,
+				},
+			},
 		},
 	},
 	{
