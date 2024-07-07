@@ -18,8 +18,14 @@ return {
 			local dapui = require("dapui")
 
 			-- Keymaps
-			set("n", "<leader>dt", dap.toggle_breakpoint, { desc = "Toggle Breakpoint" })
+			set("n", "<leader>b", dap.toggle_breakpoint, { desc = "Toggle Breakpoint" })
 			set("n", "<leader>dc", dap.continue, { desc = "Launch Debugging" })
+			set("n", "<leader>gb", dap.run_to_cursor, { desc = "Go to Breakpoint" })
+
+			-- Eval var under cursor
+			--			set("n", "<space>?", function()
+			--				require("dapui").eval(nil, { enter = true })
+			--			end)
 
 			-- UI
 			dap.listeners.before.attach.dapui_config = function()
