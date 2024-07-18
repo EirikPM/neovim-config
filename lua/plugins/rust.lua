@@ -16,6 +16,14 @@ return {
 
 			local cfg = require("rustaceanvim.config")
 			vim.g.rustaceanvim = {
+				server = {
+					on_attach = function(client, bufnr)
+						vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+					end,
+					default_settings = {
+						["rust-analyzer"] = {},
+					},
+				},
 				dap = {
 					adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path),
 				},
