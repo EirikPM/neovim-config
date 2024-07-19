@@ -18,4 +18,10 @@ return {
 		priority = 1000,
 		opts = {},
 	},
+	{
+		"AlexvZyl/nordic.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
+	},
 }
