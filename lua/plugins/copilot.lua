@@ -8,9 +8,14 @@ return {
 		},
 		build = "make tiktoken", -- Only on MacOS or Linux
 		opts = {
-			debug = true, -- Enable debugging
-			-- See Configuration section for rest
+			debug = true,
 		},
-		-- See Commands section for default commands if you want to lazy load on them
+		keys = {
+			{ "<leader>cm", "<cmd>CopilotChatCommitStaged<cr>", desc = "Generate commit message staged files" },
+			{ "<leader>cc", "<cmd>CopilotChatOpen<cr>", desc = "Open Copilot chat" },
+			{ "<leader>ce", "<cmd>CopilotChatExplain<cr>", desc = "Copilot Explain current selection" },
+			{ "<leader>cd", "<cmd>CopilotChatDocs<cr>", desc = "Copilot document current selection" },
+			{ "<leader>co", "<cmd>CopilotChatOptimize<cr>", desc = "Copilot Optimzie selected code" },
+		},
 	},
 }
