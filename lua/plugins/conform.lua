@@ -1,6 +1,7 @@
 return {
 	"stevearc/conform.nvim",
 	event = { "BufWritePre" },
+	-- enabled = true,
 	cmd = { "ConformInfo" },
 	keys = {
 		{
@@ -20,6 +21,7 @@ return {
 			terraform = { "terraform_fmt" },
 			hcl = { "terragrunt_hclfmt" },
 			proto = { "buf" },
+			json = { "jq" },
 		},
 		format_on_save = {
 			timeout_ms = 500,
