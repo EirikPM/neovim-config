@@ -4,7 +4,7 @@ return {
 		dependencies = {
 			{
 				"WhoIsSethDaniel/mason-tool-installer.nvim",
-				opts = { ensure_installed = { "lua-language-server", "stylua", "rust-analyzer" } },
+				opts = { ensure_installed = { "lua-language-server", "stylua", "rust-analyzer", "ts_ls" } },
 			},
 			"williamboman/mason-lspconfig.nvim",
 		},

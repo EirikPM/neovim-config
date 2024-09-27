@@ -7,8 +7,19 @@ return {
 		local lspconfig = require("lspconfig")
 		local set = vim.keymap.set
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
+		local snippet_capabilites = vim.lsp.protocol.make_client_capabilities()
+		snippet_capabilites.textDocument.completion.completionItem.snippetSupport = true
 		lspconfig.lua_ls.setup({
 			capabilities = capabilities,
+		})
+		lspconfig.ts_ls.setup({
+			capabilities = capabilities,
+		})
+		lspconfig.tailwindcss.setup({
+			capabilities = capabilities,
+		})
+		lspconfig.html.setup({
+			capabilities = snippet_capabilites,
 		})
 		--		lspconfig.rust_analyzer.setup({
 		--			capabilities = capabilities,
