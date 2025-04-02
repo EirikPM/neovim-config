@@ -1,4 +1,5 @@
 return {
+	{ "norcalli/nvim-base16.lua" },
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 	{
 		"olivercederborg/poimandres.nvim",
@@ -23,5 +24,21 @@ return {
 		lazy = false,
 		priority = 1000,
 		opts = {},
+	},
+	{
+		"shaunsingh/nord.nvim",
+		lazy = false,
+		priority = 1000,
+	},
+
+	{
+		"anAcc22/sakura.nvim",
+		lazy = false,
+		priority = 1000,
+	},
+	{
+		"paradise-theme/paradise",
+		lazy = false,
+		priority = 1000,
 	},
 }
