@@ -1,7 +1,7 @@
 return {
 	{
 		"mrcjkb/rustaceanvim",
-		version = "^4", -- Recommended
+		version = "^6", -- Recommended
 		lazy = false, -- This plugin is already lazy
 		config = function()
 			local mason_registry = require("mason-registry")
@@ -31,6 +31,20 @@ return {
 		end,
 	},
 	{
+		"cordx56/rustowl",
+		build = "cd rustowl && cargo install --path . --locked",
+		lazy = false, -- This plugin is already lazy
+		opts = {
+			client = {
+				on_attach = function(_, buffer)
+					vim.keymap.set("n", "<leader>o", function()
+						require("rustowl").toggle(buffer)
+					end, { buffer = buffer, desc = "Toggle RustOwl" })
+				end,
+			},
+		},
+	},
+	{
 		{
 			"saecki/crates.nvim",
 			tag = "stable",
@@ -44,11 +58,11 @@ return {
 						completion = true,
 						hover = true,
 					},
-					completion = {
-						cmp = {
-							enabled = true,
-						},
-					},
+					-- completion = {
+					-- 	cmp = {
+					-- 		enabled = true,
+					-- 	},
+					-- },
 				})
 
 				-- Keymaps
