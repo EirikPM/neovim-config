@@ -1,12 +1,16 @@
 return {
 	{
 		"williamboman/mason.nvim",
+		version = "1.11.0",
 		dependencies = {
 			{
 				"WhoIsSethDaniel/mason-tool-installer.nvim",
 				opts = { ensure_installed = { "lua-language-server", "stylua", "rust-analyzer", "ts_ls" } },
 			},
-			"williamboman/mason-lspconfig.nvim",
+			{
+				"williamboman/mason-lspconfig.nvim",
+				version = "1.32.0",
+			},
 		},
 		opts = {},
 	},
