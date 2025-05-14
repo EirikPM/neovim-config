@@ -29,3 +29,13 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank({ timeout = 200 })
 	end,
 })
+
+vim.diagnostic.config({
+	virtual_text = true,
+	virtual_lines = { current_line = true },
+	float = {
+		border = "rounded",
+	},
+	underline = true,
+	update_in_insert = false,
+})
