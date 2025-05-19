@@ -30,12 +30,18 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
-vim.diagnostic.config({
-	virtual_text = true,
-	virtual_lines = { current_line = true },
-	float = {
-		border = "rounded",
-	},
-	underline = true,
-	update_in_insert = false,
+-- vim.diagnostic.config({
+-- 	virtual_text = true,
+-- 	virtual_lines = { current_line = true },
+-- 	float = {
+-- 		border = "rounded",
+-- 	},
+-- 	underline = true,
+-- 	update_in_insert = false,
+-- })
+
+vim.api.nvim_create_autocmd("CursorHold", {
+	callback = function()
+		vim.diagnostic.open_float(nil, { focusable = false, source = "if_many" })
+	end,
 })
