@@ -13,6 +13,8 @@ opt.smartindent = true
 
 opt.clipboard = "unnamedplus"
 
+opt.laststatus = 3
+
 -- Don't have `o` add a comment
 opt.formatoptions:remove("o")
 
