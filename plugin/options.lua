@@ -27,9 +27,7 @@ opt.wrap = false
 opt.termguicolors = false
 
 vim.api.nvim_create_autocmd("TextYankPost", {
-	callback = function()
-		vim.highlight.on_yank({ timeout = 200 })
-	end,
+	callback = function() vim.highlight.on_yank({ timeout = 200 }) end,
 })
 
 -- vim.diagnostic.config({
@@ -42,8 +40,32 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- 	update_in_insert = false,
 -- })
 
+local signs = {
+	Error = " ",
+	Warn = " ",
+	Hint = "󰌵 ",
+	Info = " ",
+}
+
+local signConf = {
+	text = {},
+	texthl = {},
+	numhl = {},
+}
+
+for type, icon in pairs(signs) do
+	local severityName = string.upper(type)
+	local severity = vim.diagnostic.severity[severityName]
+	local hl = "DiagnosticSign" .. type
+	signConf.text[severity] = icon
+	signConf.texthl[severity] = hl
+	signConf.numhl[severity] = hl
+end
+
+vim.diagnostic.config({
+	signs = signConf,
+})
+
 vim.api.nvim_create_autocmd("CursorHold", {
-	callback = function()
-		vim.diagnostic.open_float(nil, { focusable = false, source = "if_many" })
-	end,
+	callback = function() vim.diagnostic.open_float(nil, { focusable = false, source = "if_many" }) end,
 })
