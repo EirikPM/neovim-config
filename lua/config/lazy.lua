@@ -40,5 +40,6 @@ require("lazy").setup({
 	defaults = {
 		autocmds = true,
 		keymaps = true,
+		options = true,
 	},
 })
