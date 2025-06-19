@@ -2,7 +2,7 @@ return {
 	"folke/trouble.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons", "echasnovski/mini.icons" },
 	opts = {
-		signs = true,
+		use_diagnostic_signs = true,
 		modes = {
 			diagnostics = {
 				win = {
