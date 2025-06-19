@@ -26,10 +26,6 @@ opt.wrap = false
 
 opt.termguicolors = false
 
-vim.api.nvim_create_autocmd("TextYankPost", {
-	callback = function() vim.highlight.on_yank({ timeout = 200 }) end,
-})
-
 -- vim.diagnostic.config({
 -- 	virtual_text = true,
 -- 	virtual_lines = { current_line = true },
