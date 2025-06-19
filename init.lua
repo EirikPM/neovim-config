@@ -1,5 +1,6 @@
 require("config.lazy")
 require("config.autocmds")
+require("config.keymaps")
 require("colors")
 
 vim.cmd([[
