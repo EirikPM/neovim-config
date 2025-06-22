@@ -1,6 +1,7 @@
 return {
 	"folke/lazydev.nvim",
-	--	opts = {
-	--		library = { plugins = { "nvim-dap-ui" }, types = true },
-	--	},
+	library = {
+		{ path = "snacks.nvim", words = { "Snacks" } },
+		{ path = "lazy.nvim", words = { "LazyVim" } },
+	},
 }
