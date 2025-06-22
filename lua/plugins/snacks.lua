@@ -9,8 +9,9 @@ return {
 		scroll = { enabled = true },
 		animate = { enabled = true },
 		gitbrowse = { enabled = true },
-		picker = { enabled = true },
 		scratch = { enabled = true },
+		scope = {},
+		picker = { enabled = true },
 	},
 	keys = {
 		-- find
@@ -34,7 +35,6 @@ return {
 		{ "<leader>gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
 		-- Other
 		{ "<leader>.", function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
-		{ "<leader>S", function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
 		{ "<leader>S", function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
 	},
 
