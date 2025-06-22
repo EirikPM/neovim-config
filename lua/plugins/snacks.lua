@@ -36,6 +36,7 @@ return {
 		-- Other
 		{ "<leader>.", function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
 		{ "<leader>S", function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
+		{ "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse", mode = { "n", "v" } },
 	},
 
 	init = function()
