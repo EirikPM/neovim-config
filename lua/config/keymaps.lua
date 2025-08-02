@@ -8,3 +8,7 @@ set("n", "<C-u>", "<C-u>zz", { desc = "scroll up and center" })
 set("n", "<C-d>", "<C-d>zz", { desc = "scroll down and center" })
 set("n", "]g", function() vim.diagnostic.goto_next() end, {})
 set("n", "[g", function() vim.diagnostic.goto_prev() end, {})
+
+-- better indenting
+set("v", "<", "<gv")
+set("v", ">", ">gv")
