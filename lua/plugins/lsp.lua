@@ -31,7 +31,6 @@ return {
 			---@type lspconfig.options
 			servers = {
 				lua_ls = {},
-				selene = {},
 				elixirls = {},
 				html = {},
 				tailwindcss = {},
