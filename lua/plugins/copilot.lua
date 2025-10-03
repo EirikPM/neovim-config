@@ -33,20 +33,37 @@ return {
 				},
 				Tracelogging = {
 					prompt = [[
-          Gjør koden idiomatisk med tracing:
-          - Legg til #[instrument] på offentlige async-funksjoner, bruk skip(...) på store/hemmelige parametere.
-          - Bytt til anyhow::Result i ikke-domene-kode og legg på .context(...) der IO/nett kan feile.
-          - Vis eksempel på RUST_LOG-verdier.
+            Gjør koden idiomatisk med tracing:
+            - Legg til #[instrument] på offentlige async-funksjoner, bruk skip(...) på store/hemmelige parametere.
+            - Bytt til anyhow::Result i ikke-domene-kode og legg på .context(...) der IO/nett kan feile.
+            - Vis eksempel på RUST_LOG-verdier.
           ]],
 				},
 				DelOppModul = {
 					prompt = [[
-          Analyser gjeldende buffer og vurder modul-splitting:
-          - Pek ut tydelige ansvar/ideer og foreslå modulgrenser (domene/applikasjon/infrastruktur).
-          - Foreslå fil-/mappenavn på norsk.
-          - Vis unified diff for: mod-oppdateringer, nye filer med skjelett, og re-eksport i mod.rs.
-          - Marker hvilke symboler som bør være pub vs pub(crate).
-          - Legg til #[instrument] der det gir mening, og bruk anyhow i adaptere.
+            Analyser gjeldende buffer og vurder modul-splitting:
+            - Pek ut tydelige ansvar/ideer og foreslå modulgrenser (domene/applikasjon/infrastruktur).
+            - Foreslå fil-/mappenavn på norsk.
+            - Vis unified diff for: mod-oppdateringer, nye filer med skjelett, og re-eksport i mod.rs.
+            - Marker hvilke symboler som bør være pub vs pub(crate).
+            - Legg til #[instrument] der det gir mening, og bruk anyhow i adaptere.
+          ]],
+				},
+				Stilguide = {
+					prompt = [[
+            You are an expert Rust developer. 
+            When writing code, always:
+            - Use idiomatic Rust patterns (ownership, borrowing, lifetimes, Result/Option handling).
+            - Prefer enums, traits, and newtypes for domain modeling rather than raw strings or primitive types.
+            - Follow Rust naming conventions (snake_case for variables/functions/modules, CamelCase for types/enums).
+            - Write ALL variable names, function names, module names, type names, and comments in Norwegian.
+            - Structure code cleanly into modules with clear separation of concerns (domain, application, infrastructure).
+            - Use `?` operator and proper error handling with custom error types when needed.
+            - Avoid unnecessary clones, unwraps, and panics unless absolutely justified.
+            - Write concise and readable code with meaningful names.
+            - Add doc comments (`///`) for public functions, types, and modules — in Norwegian.
+            - When in doubt, follow the Rust API Guidelines and Clippy lint recommendations.
+            - Provide tests for critical functions.
           ]],
 				},
 			},
