@@ -3,6 +3,7 @@ return {
 	opts = {},
 	lazy = true, -- false Recommended
 	ft = "markdown", -- If you decide to lazy-load anyway
+	enabled = false,
 
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
