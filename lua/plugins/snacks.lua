@@ -15,6 +15,7 @@ return {
 	},
 	keys = {
 		-- find
+		{ "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
 		{ "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
 		{ "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
 		{
@@ -23,6 +24,13 @@ return {
 			desc = "Find Config Files",
 		},
 		-- search
+		{
+			"<leader>sw",
+			function() Snacks.picker.grep_word() end,
+			mode = { "n", "x" },
+			desc = "Search word or selection",
+		},
+		{ "<leader>su", function() Snacks.picker.undo() end, desc = "Undo history" },
 		{ "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
 		{ "<leader>sD", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer Diagnostics" },
 		{ "<leader>sh", function() Snacks.picker.help() end, desc = "Help Pages" },

@@ -33,10 +33,14 @@ return {
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("LspKeymaps", { clear = true }),
 			callback = function(event)
-				local keys = { buffer = event.buf }
-				vim.keymap.set("n", "K", vim.lsp.buf.hover, keys)
-				vim.keymap.set("n", "gD", vim.lsp.buf.definition, keys)
-				vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, keys)
+				local function map(lhs, rhs, desc) vim.keymap.set("n", lhs, rhs, { buffer = event.buf, desc = desc }) end
+				map("K", vim.lsp.buf.hover, "Hover documentation")
+				map("gd", vim.lsp.buf.definition, "Goto definition")
+				map("gD", vim.lsp.buf.declaration, "Goto declaration")
+				vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {
+					buffer = event.buf,
+					desc = "Code action",
+				})
 			end,
 		})
 

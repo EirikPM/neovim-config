@@ -1,11 +1,3 @@
-local function toggle_diffview(cmd)
-	if next(require("diffview.lib").views) == nil then
-		vim.cmd(cmd)
-	else
-		vim.cmd("DiffviewClose")
-	end
-end
-
 return {
 	{
 		"lewis6991/gitsigns.nvim",
@@ -32,23 +24,24 @@ return {
 		},
 	},
 	{
-		"sindrets/diffview.nvim",
-		cmd = {
-			"DiffviewOpen",
-			"DiffviewClose",
-			"DiffviewFileHistory",
-			"DiffviewToggleFiles",
-			"DiffviewFocusFiles",
-			"DiffviewRefresh",
-		},
+		"esmuellert/codediff.nvim",
+		version = "^4.0.0",
+		cmd = "CodeDiff",
 		keys = {
-			{ "<leader>gd", function() toggle_diffview("DiffviewOpen") end, desc = "Diff Index" },
-			{ "<leader>gD", function() toggle_diffview("DiffviewOpen master..HEAD") end, desc = "Diff master" },
+			{ "<leader>gd", "<cmd>CodeDiff<cr>", desc = "Git diff" },
 			{
-				"<leader>gf",
-				function() toggle_diffview("DiffviewFileHistory %") end,
-				desc = "Open diffs for current File",
+				"<leader>gD",
+				function()
+					vim.ui.input({ prompt = "Compare against branch/revision: " }, function(base)
+						if base and vim.trim(base) ~= "" then
+							vim.cmd.CodeDiff({ args = { vim.trim(base) .. "..." } })
+						end
+					end)
+				end,
+				desc = "Diff against branch",
 			},
+			{ "<leader>gf", "<cmd>CodeDiff history %<cr>", desc = "File history" },
+			{ "<leader>gS", "<cmd>CodeDiff --staged<cr>", desc = "Staged diff" },
 		},
 	},
 }

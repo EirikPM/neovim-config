@@ -11,6 +11,17 @@ return {
 						capabilities = require("blink.cmp").get_lsp_capabilities(),
 						on_attach = function(_, bufnr)
 							vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+							for key, action in pairs({
+								["<leader>rr"] = { "runnables", "Rust run target" },
+								["<leader>rt"] = { "testables", "Rust run tests" },
+								["<leader>re"] = { "explainError", "Rust explain error" },
+								["<leader>rm"] = { "expandMacro", "Rust expand macro" },
+							}) do
+								vim.keymap.set("n", key, function() vim.cmd.RustLsp(action[1]) end, {
+									buffer = bufnr,
+									desc = action[2],
+								})
+							end
 							vim.keymap.set("n", "<leader>dr", function() vim.cmd.RustLsp("debuggables") end, {
 								buffer = bufnr,
 								desc = "Rust Debuggables",
