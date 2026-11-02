@@ -1,7 +1,7 @@
 return {
 	{
 		"mrcjkb/rustaceanvim",
-		version = "^6", -- Recommended
+		version = "^9", -- Recommended
 		lazy = false, -- This plugin is already lazy
 		config = function()
 			local mason_registry = require("mason-registry")
@@ -17,9 +17,7 @@ return {
 			local cfg = require("rustaceanvim.config")
 			vim.g.rustaceanvim = {
 				server = {
-					on_attach = function(client, bufnr)
-						vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-					end,
+					on_attach = function(client, bufnr) vim.lsp.inlay_hint.enable(true, { bufnr = bufnr }) end,
 					default_settings = {
 						["rust-analyzer"] = {},
 					},
