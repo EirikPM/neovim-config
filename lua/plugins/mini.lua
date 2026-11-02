@@ -22,6 +22,10 @@ return {
 	{
 		"echasnovski/mini.ai",
 		event = "VeryLazy",
+		dependencies = {
+			-- Queries used by the Treesitter textobjects below.
+			{ "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
+		},
 		opts = function()
 			local ai = require("mini.ai")
 			local util = require("lazyvim.util")

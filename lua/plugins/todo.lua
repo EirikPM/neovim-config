@@ -5,7 +5,7 @@ return {
 	keys = {
 		{ "<leader>tq", "<cmd>TodoQuickFix<cr>", desc = "Move Todo to Quickfix list" },
 		{ "<leader>tl", "<cmd>TodoLocList<cr>", desc = "Move Todo to Location list" },
-		{ "<leader>tf", "<cmd>TodoTelescope<cr>", desc = "Search project Todos" },
+		{ "<leader>tf", function() Snacks.picker.todo_comments() end, desc = "Search project Todos" },
 	},
 	opts = {},
 }

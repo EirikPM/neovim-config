@@ -1,34 +1,49 @@
 return {
-	-- {
-	-- 	"nvim-treesitter/nvim-treesitter",
-	-- 	build = function() require("nvim-treesitter.install").update({ with_sync = true })() end,
-	-- 	config = function()
-	-- 		local configs = require("nvim-treesitter.configs")
-	--
-	-- 		configs.setup({
-	-- 			highlight = { enable = true },
-	-- 			indent = { enable = true },
-	-- 		})
-	-- 	end,
-	-- },
 	{
 		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
 		lazy = false,
 		build = ":TSUpdate",
-		branch = "main",
+		config = function()
+			-- Installerer bare parserne som mangler.
+			require("nvim-treesitter").install({
+				"rust",
+				"toml",
+				"lua",
+				"luadoc",
+				"vim",
+				"vimdoc",
+				"query",
+				"markdown",
+				"markdown_inline",
+				"html",
+			})
 
-		-- config = function()
-		-- 	local configs = require("nvim-treesitter.configs")
-		--
-		-- 	configs.setup({
-		-- 		highlight = { enable = true },
-		-- 		indent = { enable = true },
-		-- 	})
-		-- end,
+			vim.api.nvim_create_autocmd("FileType", {
+				group = vim.api.nvim_create_augroup("TreesitterFeatures", { clear = true }),
+				callback = function(event)
+					local lang = vim.treesitter.language.get_lang(vim.bo[event.buf].filetype)
+
+					if not lang or not vim.treesitter.language.add(lang) then return end
+
+					vim.treesitter.start(event.buf, lang)
+
+					if vim.treesitter.query.get(lang, "indents") then
+						vim.bo[event.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+					end
+				end,
+			})
+		end,
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-context",
 		opts = {},
 		enabled = false,
+	},
+	{
+		{
+			"windwp/nvim-ts-autotag",
+			opts = {},
+		},
 	},
 }

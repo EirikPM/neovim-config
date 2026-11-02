@@ -1,57 +1,76 @@
 return {
 	{
 		"mrcjkb/rustaceanvim",
-		version = "^9", -- Recommended
-		lazy = false, -- This plugin is already lazy
-		config = function()
-			local mason_registry = require("mason-registry")
-
-			local codelldb = mason_registry.get_package("codelldb")
-			local extension_path = codelldb:get_install_path() .. "/extension/"
-			local codelldb_path = extension_path .. "adapter/codelldb"
-			local this_os = vim.uv.os_uname().sysname
-			-- The liblldb extension is .so for Linux and .dylib for MacOS
-			-- TODO: Make this dynamic
-			local liblldb_path = extension_path .. "lldb/lib/liblldb.so" --[[ .. (this_os == "Linux" and ".so" or ".dylib") ]]
-
-			local cfg = require("rustaceanvim.config")
-			vim.g.rustaceanvim = {
-				server = {
-					on_attach = function(client, bufnr) vim.lsp.inlay_hint.enable(true, { bufnr = bufnr }) end,
-					default_settings = {
-						["rust-analyzer"] = {},
+		version = "^9",
+		lazy = false, -- rustaceanvim handles loading for Rust buffers itself.
+		dependencies = { "saghen/blink.cmp" },
+		init = function()
+			vim.g.rustaceanvim = function()
+				return {
+					server = {
+						capabilities = require("blink.cmp").get_lsp_capabilities(),
+						on_attach = function(_, bufnr)
+							vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+							vim.keymap.set("n", "<leader>dr", function() vim.cmd.RustLsp("debuggables") end, {
+								buffer = bufnr,
+								desc = "Rust Debuggables",
+							})
+						end,
+						default_settings = {
+							["rust-analyzer"] = {
+								-- bacon-ls owns compiler diagnostics; avoid duplicate reports.
+								checkOnSave = false,
+								diagnostics = { enable = false },
+							},
+						},
 					},
-				},
-				dap = {
-					adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path),
+				}
+			end
+		end,
+	},
+	{
+		"neovim/nvim-lspconfig",
+		-- Extends the servers table consumed by your existing plugins/lsp.lua.
+		opts = function(_, opts)
+			opts.servers = opts.servers or {}
+			opts.servers.bacon_ls = {
+				-- Share one Bacon client across members of the same Cargo workspace.
+				root_dir = vim.lsp.config.rust_analyzer.root_dir,
+				init_options = { cargo = { updateOnInsert = false } },
+				settings = {
+					bacon_ls = {
+						backend = "cargo",
+						cargo = {
+							command = "check",
+							checkOnSave = true,
+							allTargets = true,
+							extraArgs = { "--workspace" },
+							-- Finish a running check and queue the latest save.
+							cancelRunning = false,
+						},
+					},
 				},
 			}
 		end,
 	},
 	{
-		{
-			"saecki/crates.nvim",
-			tag = "stable",
-			event = { "BufRead Cargo.toml" },
-			config = function()
-				local crates = require("crates")
-				crates.setup({
-					lsp = {
-						enabled = true,
-						actions = true,
-						completion = true,
-						hover = true,
-					},
-					-- completion = {
-					-- 	cmp = {
-					-- 		enabled = true,
-					-- 	},
-					-- },
-				})
-
-				-- Keymaps
-				vim.keymap.set("n", "<leader>cf", crates.show_features_popup, { desc = "Show Crate Features" })
-			end,
+		"saecki/crates.nvim",
+		tag = "stable",
+		event = { "BufRead Cargo.toml", "BufNewFile Cargo.toml" },
+		opts = {
+			lsp = {
+				enabled = true,
+				actions = true,
+				completion = true,
+				hover = true,
+			},
+		},
+		keys = {
+			{
+				"<leader>cf",
+				function() require("crates").show_features_popup() end,
+				desc = "Show Crate Features",
+			},
 		},
 	},
 }
