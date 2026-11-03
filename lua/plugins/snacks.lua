@@ -11,7 +11,14 @@ return {
 		gitbrowse = { enabled = true },
 		scratch = { enabled = true },
 		scope = {},
-		picker = { enabled = true },
+		picker = {
+			enabled = true,
+			sources = {
+				lsp_references = { include_declaration = false, auto_confirm = false },
+				lsp_incoming_calls = { auto_confirm = false },
+				lsp_outgoing_calls = { auto_confirm = false },
+			},
+		},
 	},
 	keys = {
 		-- find
@@ -37,10 +44,6 @@ return {
 		{ "<leader>sH", function() Snacks.picker.highlights() end, desc = "Highlights" },
 		{ "<leader>sq", function() Snacks.picker.qflist() end, desc = "Quickfix list" },
 		{ "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
-		-- LSP
-		{ "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
-		{ "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
-		{ "<leader>gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
 		-- Other
 		{ "<leader>.", function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
 		{ "<leader>S", function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },

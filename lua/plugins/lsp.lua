@@ -3,6 +3,7 @@ return {
 	dependencies = {
 		{ "j-hui/fidget.nvim", opts = {} },
 		"saghen/blink.cmp",
+		"folke/snacks.nvim",
 	},
 	opts = {
 		diagnostics = {
@@ -35,8 +36,15 @@ return {
 			callback = function(event)
 				local function map(lhs, rhs, desc) vim.keymap.set("n", lhs, rhs, { buffer = event.buf, desc = desc }) end
 				map("K", vim.lsp.buf.hover, "Hover documentation")
-				map("gd", vim.lsp.buf.definition, "Goto definition")
-				map("gD", vim.lsp.buf.declaration, "Goto declaration")
+				map("gd", function() Snacks.picker.lsp_definitions() end, "Goto definition")
+				map("gD", function() Snacks.picker.lsp_declarations() end, "Goto declaration")
+				map("grr", function() Snacks.picker.lsp_references() end, "References")
+				map("gri", function() Snacks.picker.lsp_implementations() end, "Goto implementation")
+				map("grt", function() Snacks.picker.lsp_type_definitions() end, "Goto type definition")
+				map("<leader>ci", function() Snacks.picker.lsp_incoming_calls() end, "Incoming calls")
+				map("<leader>co", function() Snacks.picker.lsp_outgoing_calls() end, "Outgoing calls")
+				map("<leader>ss", function() Snacks.picker.lsp_symbols() end, "Document symbols")
+				map("<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, "Workspace symbols")
 				vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {
 					buffer = event.buf,
 					desc = "Code action",
