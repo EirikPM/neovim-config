@@ -17,6 +17,9 @@ return {
 				lsp_references = { include_declaration = false, auto_confirm = false },
 				lsp_incoming_calls = { auto_confirm = false },
 				lsp_outgoing_calls = { auto_confirm = false },
+				files = {
+					exclude = { "**/target/**" },
+				},
 			},
 		},
 	},
@@ -24,6 +27,16 @@ return {
 		-- find
 		{ "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
 		{ "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
+		{
+			"<leader>fF",
+			function()
+				local dir = vim.fn.expand("%:p:h")
+				Snacks.picker.files({
+					cwd = vim.fs.root(dir, { { "Cargo.toml", "package.json" } }) or dir,
+				})
+			end,
+			desc = "Find Files (app/crate)",
+		},
 		{ "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
 		{
 			"<leader>fc",
